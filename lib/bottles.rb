@@ -1,7 +1,15 @@
 class Bottles
+  def bottle_number_for(number)
+    if number == 0
+      BottleNumber0
+    else
+      BottleNumber
+    end.new(number)
+  end
+
   def verse(number)
-    bottle_number = BottleNumber.new(number)
-    next_bottle_number = BottleNumber.new(bottle_number.successor)
+    bottle_number = bottle_number_for(number)
+    next_bottle_number = bottle_number_for(bottle_number.successor)
 
     "#{bottle_number} of beer on the wall, ".capitalize +
     "#{bottle_number} of beer.\n" +
@@ -49,11 +57,7 @@ class BottleNumber
   end
 
   def quantity
-    if number == 0
-      "no more"
-    else
-      number.to_s
-    end
+    number.to_s
   end
 
   def successor
